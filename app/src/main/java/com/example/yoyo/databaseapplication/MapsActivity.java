@@ -28,46 +28,15 @@ public class MapsActivity  extends AppCompatActivity implements OnMapReadyCallba
 
     private GoogleMap mMap;
     private ArrayList<Notes> array_list_notes;
-   // private String[] location_details;
-   // private boolean flag;
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-
-       // location_details= new String[3];
         array_list_notes = new ArrayList<>();
 
         Intent i = getIntent();
-//        Bundle extras = i.getExtras();
-//        if (extras != null)
-//        {
-//            Toast.makeText(MapsActivity.this, extras.getString(Display_Info.Show_Single_Location)+" I am right", Toast.LENGTH_SHORT).show();
-////
-//            flag = true;//only one pin_point
-//           String transporter_info = extras.getString(Display_Info.Show_Single_Location);
-//           for(int j =0;j<transporter_info.length();j++)
-//           {
-//               location_details  =  transporter_info.split(",");
-//           }
-       // }
-  //  else
-       // {
-           // flag = false;//all points
-            array_list_notes = i.getParcelableArrayListExtra("notes");
-       // }
-       // getCoordinatesFromMemo(array_list_notes);
-//        Bundle b = this.getIntent().getExtras();
-//        if(b!=null)
-//        {
-//
-//        array_list_notes = b.getParcelableArrayList("notes");
-       // Toast.makeText(MapsActivity.this, "list size "+array_list_notes.size(), Toast.LENGTH_SHORT).show();
-//           // Toast.makeText(MapsActivity.this, "new toast", Toast.LENGTH_SHORT).show();
-//        }
-
-
+        array_list_notes = i.getParcelableArrayListExtra("notes");
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -90,32 +59,8 @@ public class MapsActivity  extends AppCompatActivity implements OnMapReadyCallba
     {
         mMap = googleMap;
         Toast.makeText(MapsActivity.this, "list size from onMapReady "+array_list_notes.size(), Toast.LENGTH_SHORT).show();
-       // if(flag==false) {
-            getCoordinatesFromMemo(array_list_notes);
-       // }
-       // if(flag==true)
-//       // {
-//            double latitude = Double.parseDouble(location_details[0]);
-//            double longitude = Double.parseDouble(location_details[1]);
-//            String topic = location_details[2];
-//
-//            LatLng sydney = new LatLng(latitude, longitude);
-//            mMap.addMarker(new MarkerOptions().position(sydney).title(topic));
-//            mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        //}
-        /*if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            mMap.setMyLocationEnabled(true);
-            return;
-        }
-        */
 
+            getCoordinatesFromMemo(array_list_notes);
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED)
         {
@@ -125,11 +70,6 @@ public class MapsActivity  extends AppCompatActivity implements OnMapReadyCallba
         {
             //Toast.makeText(MapsActivity.this, "wewe", Toast.LENGTH_SHORT).show();
         }
-
-      //   Add a marker in Copenhagen and move the camera
-//        LatLng sydney = new LatLng(55.6761, 12.5683);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Copenhagen"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 
     @Override
@@ -161,10 +101,6 @@ public class MapsActivity  extends AppCompatActivity implements OnMapReadyCallba
             LatLng pinPoint = new LatLng(lat_double,lng_double);
             mMap.addMarker(new MarkerOptions().position(pinPoint).title(note.getTopic()));
         }
-
-
-
-       // mMap.moveCamera(CameraUpdateFactory.newLatLng(pinPoint));
 
     }
 
