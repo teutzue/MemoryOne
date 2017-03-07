@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".DisplayContact"
+    android:background="#E1E1E1"
+    >
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.yoyo.databaseapplication.Display_Info">
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:id="@+id/firstLay"
+
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/topic"
+        android:text="Topic"
+        android:textStyle="bold"
+        android:textSize="20sp"
+             />
+
+    <EditText
+        android:id="@+id/editTextTopic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:background="@drawable/edit_text_layout"
+        android:ems="16"
+        android:maxLength="22"
+        android:layout_margin="6dp"
+        >
+    </EditText>
+</LinearLayout>
+    <View
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_weight="1" />
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_below="@+id/firstLay"
+    android:id="@+id/secondlay"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/description"
+        android:text="Description :"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        />
+
+    <EditText
+        android:id="@+id/editTextDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+
+        android:ems="16"
+
+        android:maxLength="155"
+        android:layout_margin="6dp"
+        android:hint="Add a good description here"
+        android:background="@drawable/edit_text_layout"
+        />
+</LinearLayout>
+    <View
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_weight="1" />
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_below="@+id/secondlay"
+
+    >
+
+
+
+    <Button
+        android:id="@+id/ListenToMemo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
+        android:onClick = "ListenToMemo"
+        android:text="@string/Listen_To_Memo" />
+    <Button
+        android:id="@id/buttonTakeAPhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="28dp"
+        android:onClick = "TakeAPhoto"
+        android:text="@string/Take_a_Photo" />
+
+
+    <Button
+        android:id="@+id/buttonCheckLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="28dp"
+        android:onClick = "DisplayOnePinPoint"
+        android:text="@string/Check_Location" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="28dp"
+        android:onClick="run"
+        android:text="@string/Save" />
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_below="@+id/editTextDescription"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ImageView
+        android:id="@+id/imgPreview"
+
+        android:layout_marginLeft="5px"
+        android:layout_marginRight="20px"
+        android:layout_marginTop="5px"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        >
+    </ImageView>
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/addressLabel"
+        android:layout_below="@+id/buttonTakeALocation"
+        />
+</LinearLayout>
+
+</LinearLayout>
+
+</ScrollView>

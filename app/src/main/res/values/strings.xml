@@ -1,0 +1,17 @@
+<resources>
+
+
+    <string name="app_name">DatabaseApplication</string>
+
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Are you sure?</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="Take_a_Photo">Take a Photo</string>
+    <string name="Listen_To_Memo">Listen To Memo</string>
+    <item name="buttonTakeAPhoto" type="id">buttonTakeAPhoto</item>
+    <string name="Save">Save</string>
+    <string name ="Check_Location">Check Location</string>
+
+
+</resources>
