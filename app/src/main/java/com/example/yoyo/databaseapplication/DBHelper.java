@@ -43,13 +43,7 @@ public class DBHelper extends SQLiteOpenHelper
     @Override
     public void onCreate(SQLiteDatabase db)
     {
-        // TODO Auto-generated method stub
-//        db.execSQL(
-//                "create table contacts " +
-//                        "(id integer primary key, name text,phone text,email text, street text,place text)"
-//        );
        db.execSQL(SQL_CREATE_ENTRIES);
-     //   db.execSQL(SQL_CREATE_LOCATION);
     }
 
     public Notes insertNote (Notes note,Bitmap picture)
@@ -61,9 +55,7 @@ public class DBHelper extends SQLiteOpenHelper
         contentValues.put(FeedReaderContract.FeedEntry.Notes_COLUMN_Description, note.getDescription());
         contentValues.put(FeedReaderContract.FeedEntry.Notes_Location_LAT, note.getLat());
         contentValues.put(FeedReaderContract.FeedEntry.Notes_Location_LNG, note.getLng());
-       // contentValues.put(FeedReaderContract.FeedEntry.Notes_COLUMN_Image,img);
         int newid = (int) db.insert(FeedReaderContract.FeedEntry.Notes_TABLE_NAME, null, contentValues);
-        //why did i needed the primary key ???
         note.set_id(newid);
         String path = insertPhoto(newid,picture);
         note.setImage(path);
@@ -78,14 +70,10 @@ public class DBHelper extends SQLiteOpenHelper
         ContentValues contentValues = new ContentValues();
         contentValues.put(FeedReaderContract.FeedEntry.Notes_COLUMN_Topic, note.getTopic());
         contentValues.put(FeedReaderContract.FeedEntry.Notes_COLUMN_Description, note.getDescription());
-        // contentValues.put(FeedReaderContract.FeedEntry.Notes_COLUMN_Image,img);
         contentValues.put(FeedReaderContract.FeedEntry.Notes_Location_LAT, note.getLat());
         contentValues.put(FeedReaderContract.FeedEntry.Notes_Location_LNG, note.getLng());
         int newid = (int) db.insert(FeedReaderContract.FeedEntry.Notes_TABLE_NAME, null, contentValues);
-        //why did i needed the primary key ???
         note.set_id(newid);
-      //  String path =   insertPhoto(newid,picture);
-      //  note.setImage(path)
         db.close();
         return note;
     }
@@ -96,7 +84,6 @@ public class DBHelper extends SQLiteOpenHelper
         String[] projection = {FeedReaderContract.FeedEntry.Notes_COLUMN_ID, FeedReaderContract.FeedEntry.Notes_COLUMN_Topic, FeedReaderContract.FeedEntry.Notes_COLUMN_Description,
                 FeedReaderContract.FeedEntry.Notes_COLUMN_Image};
         String selection = FeedReaderContract.FeedEntry.Notes_COLUMN_ID+ "=?";
-        //default order is asd
         String sortOrder = FeedReaderContract.FeedEntry.Notes_COLUMN_Topic;
 
         String[] arguments = new String[]{String.valueOf(id)};
@@ -105,11 +92,8 @@ public class DBHelper extends SQLiteOpenHelper
         Notes note = new Notes();
         if(c!=null && c.moveToFirst())
         {
-          //  c.moveToFirst();
-          //  byte[] blob = c.getBlob(c.getColumnIndex(FeedReaderContract.FeedEntry.Notes_COLUMN_Image));  !!! Its fine its byte[] !!!
             note = new Notes(c.getInt(c.getColumnIndex(FeedReaderContract.FeedEntry.Notes_COLUMN_ID)),c.getString(c.getColumnIndex(FeedReaderContract.FeedEntry.Notes_COLUMN_Topic)),
                 c.getString(c.getColumnIndex(FeedReaderContract.FeedEntry.Notes_COLUMN_Description)),c.getString(c.getColumnIndex(FeedReaderContract.FeedEntry.Notes_COLUMN_Image)));
-           // byte[] blob = c.getBlob(c.getColumnIndex(FeedReaderContract.FeedEntry.Notes_COLUMN_Image));
 
         }else
         {
@@ -296,9 +280,6 @@ public class DBHelper extends SQLiteOpenHelper
               Notes note = new Notes();
                 //c.getInt(c.getColumnIndex(FeedReaderContract.FeedEntry.Notes_COLUMN_ID))
                 note.set_id(res.getInt(res.getColumnIndex(FeedReaderContract.FeedEntry.Notes_COLUMN_ID)));
-//                int indexTopic = res.getColumnIndex(FeedReaderContract.FeedEntry.Notes_COLUMN_Topic);
-//
-//                note.setTopic(indexTopic);
                 note.setDescription(res.getString(res.getColumnIndex(FeedReaderContract.FeedEntry.Notes_COLUMN_Description)));
                 note.setTopic(res.getString(res.getColumnIndex(FeedReaderContract.FeedEntry.Notes_COLUMN_Topic)));
                 note.setImage(res.getString(res.getColumnIndex(FeedReaderContract.FeedEntry.Notes_COLUMN_Image)));
