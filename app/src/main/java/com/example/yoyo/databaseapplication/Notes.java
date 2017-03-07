@@ -146,19 +146,4 @@ public class Notes implements Parcelable
         dest.writeString(lat);
         dest.writeString(lng);
     }
-//
-//    public class MyCreator implements Parcelable.Creator<Notes> {
-//        public Notes createFromParcel(Parcel source)
-//        {
-//            return new Notes(source);
-//
-//        }
-//        public Notes[] newArray(int size)
-//        {
-//            return new Notes[size];
-//        }
-//    }
-
-
-    // all get , set method
 }
