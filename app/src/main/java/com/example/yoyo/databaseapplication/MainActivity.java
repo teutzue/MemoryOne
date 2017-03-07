@@ -55,18 +55,8 @@ public class MainActivity extends AppCompatActivity  {
 
         mydb = new DBHelper(this);
         text  = (TextView)findViewById(R.id.text);
-
-
-//        Drawable myDrawable = getResources().getDrawable(R.drawable.me);
-//        Bitmap anImage  = ((BitmapDrawable) myDrawable).getBitmap();
-//        Notes note  = new Notes();
-//        note.setTopic("Yoanas first entry");
-//        note.setDescription(" Dano se polu4i slava tebe gospodi ");
-//        mydb.insertNote(note,anImage);
-
         theMainList =(ListView)findViewById(R.id.mainListView);
 
-      //  hiddenText = (TextView) findViewById(R.id.hiddentext);
         obj = (ListView) findViewById(R.id.mainListView);
         array_list = mydb.getAllNotes();
 
@@ -76,29 +66,12 @@ public class MainActivity extends AppCompatActivity  {
         obj.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // Toast.makeText(MainActivity.this, "The position pressed is "+position, Toast.LENGTH_SHORT).show();
                 int id_Search = position + 1;//because of the way they are stored into the database
                 hiddenText = (TextView) theMainList.getChildAt(position).findViewById(R.id.hiddentext);
                 String index = (String) hiddenText.getText();
                 int real_index = Integer.parseInt(index);
 
-               // Toast.makeText(MainActivity.this, "The position pressed is " + id_Search, Toast.LENGTH_SHORT).show();
-
                 Bundle dataBundle = new Bundle();
-                //   LinearLayout lay = obj.
-//                String text_id  =  (String) hiddenText.getText();
-//                int _id = Integer.parseInt(text_id);
-//
-//
-//                View v = getViewByPosition(position, obj);
-//                if (v != null) {
-//
-//                }
-
-
-                // dataBundle.putInt("id",id_Search);
-              //  dataBundle.putInt("id", id_Search);
-
                 dataBundle.putInt("id", real_index);
                 Intent intent = new Intent(getApplicationContext(), Display_Info.class);
 
@@ -106,28 +79,8 @@ public class MainActivity extends AppCompatActivity  {
                 startActivityForResult(intent, CHECK_RIGHT_INTENT);
             }
         });
-
-
-
-
-
-
-
-
     }
 
-
-    // from byte array to Bitmap
-//    public  Bitmap getPhoto(byte[] image)
-//    {
-//        return BitmapFactory.decodeByteArray(image, 0, image.length);
-//    }
-//
-//    public  byte[] getBytes(Bitmap bitmap) {
-//        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-//        bitmap.compress(Bitmap.CompressFormat.PNG, 0, stream);
-//        return stream.toByteArray();
-//    }
 
 
     @Override
@@ -138,22 +91,9 @@ public class MainActivity extends AppCompatActivity  {
 
             array_list.clear();
             array_list = mydb.getAllNotes();
-            //Toast.makeText(MainActivity.this, " onActivityResult called  and the size of the list is " + array_list, Toast.LENGTH_SHORT).show();
-
-            adapter.updateReceiptsList(array_list);//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            adapter.updateReceiptsList(array_list);
 
         }
-
-
-        if ( requestCode==CHECK_LOCATION_INTENT)
-        {
-
-
-        }
-
-
-
-        // }
     }
 
 
@@ -178,14 +118,8 @@ public class MainActivity extends AppCompatActivity  {
                 return true;
 
             case R.id.itemLocation:
-               // Bundle dataLoc = new Bundle();
-              //  dataLoc.
-                // dataLoc.putInt("id", 0);
                 Intent intentLoc = new Intent(getApplicationContext(), MapsActivity.class);
-               // dataLoc.putParcelableArrayList("notes",array_list);
                 intentLoc.putParcelableArrayListExtra("notes",array_list);
-                //intentLoc.putExtras(dataLoc);
-                //startActivity(intent);
                 startActivityForResult(intentLoc, CHECK_LOCATION_INTENT);
                 return true;
 
@@ -207,13 +141,5 @@ public class MainActivity extends AppCompatActivity  {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
     }
-
-
-
-    /////////////////////////////GoogleApiClient.ConnectionCallbacks methods
-
-
-
-
 
 }
