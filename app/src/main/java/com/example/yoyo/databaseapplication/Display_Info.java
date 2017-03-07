@@ -82,7 +82,6 @@ public class Display_Info extends AppCompatActivity implements GoogleApiClient.C
             @Override
             public void onClick(View v) {
                 String toSpeak = textDescription.getText().toString();
-                //Toast.makeText(getApplicationContext(), toSpeak,Toast.LENGTH_SHORT).show();
                 textToSpeech.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null);
             }
         });
@@ -112,46 +111,17 @@ public class Display_Info extends AppCompatActivity implements GoogleApiClient.C
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             value = extras.getInt("id");
-            //Toast.makeText(Display_Info.this, "The vallues passed is " + value, Toast.LENGTH_SHORT).show();
             if (value > 0)
             {
-
-
-
                 checkLocation.setVisibility(View.VISIBLE);
                 id_to_delete_update = value;
-                ListenToMemo.setVisibility(View.VISIBLE);
-                //   Toast.makeText(Display_Info.this, "The value to be updated is "+id_to_delete_update, Toast.LENGTH_SHORT).show();
+                ListenToMemo.setVisibility(View.VISIBLE); 
                 Log.d("My Custom Tag", Integer.toString(id_to_delete_update));
                 button.setVisibility(View.INVISIBLE);
                 take_a_pic_button.setVisibility(View.INVISIBLE);
-               // ListenToMemo.setVisibility(View.INVISIBLE);
-                // Toast.makeText(Display_Info.this,id_to_delete_update, Toast.LENGTH_LONG).show();
                 Notes note = mydb.getData(id_to_delete_update);//java advanced
                 if (note != null)
                 {
-
-//                    checkLocation.setOnClickListener(new View.OnClickListener()
-//                    {
-//                        @Override
-//                        public void onClick(View v)
-//                        {
-//                            Notes note = mydb.getData(id_to_delete_update);
-//                           String lat = note.getLat();
-//                           String lng = note.getLng();
-//                            String topic = note.getTopic();
-//                            String transporter_info = lat+","+lng+","+topic;
-//                            Toast.makeText(Display_Info.this, " lat lng "+lat+" "+lng, Toast.LENGTH_SHORT).show();
-//                            Bundle bundle_location_one = new Bundle();
-//                            bundle_location_one.putString(Show_Single_Location,transporter_info);
-//                            Toast.makeText(Display_Info.this, "", Toast.LENGTH_SHORT).show();
-//
-//                            Intent intentLoc = new Intent(getApplicationContext(), MapsActivity.class);
-//                            intentLoc.putExtras(bundle_location_one);
-//                            startActivityForResult(intentLoc, CHECK_LOCATION_INTENT_Display_Info);
-//                        }
-//                    });
-
                     textTopic.setText(note.getTopic());
                     textTopic.setFocusable(false);
                     textTopic.setClickable(false);
@@ -182,7 +152,6 @@ public class Display_Info extends AppCompatActivity implements GoogleApiClient.C
         if (id_to_delete_update > 0)
         {
             getMenuInflater().inflate(R.menu.display_note, menu);
-
         } else {
 
         }
@@ -214,9 +183,6 @@ public class Display_Info extends AppCompatActivity implements GoogleApiClient.C
                         .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 mydb.deleteById(id_to_delete_update);
-                               // Toast.makeText(getApplicationContext(), "Deleted Successfully", Toast.LENGTH_SHORT).show();
-//                                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-//                                startActivity(intent);
                                 finish();
                             }
                         })
@@ -311,7 +277,6 @@ public class Display_Info extends AppCompatActivity implements GoogleApiClient.C
 
                     take_a_pic_button.setVisibility(View.INVISIBLE);
                     mydb.insertNoteWithoutBitmap(note);// for now I insert only without a picture
-                  //  Toast.makeText(Display_Info.this, " Note added " + topic, Toast.LENGTH_SHORT).show();
                     Log.i("camera", "This device has no camera!");
                 }
                 finish();
@@ -342,36 +307,11 @@ public class Display_Info extends AppCompatActivity implements GoogleApiClient.C
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK)
         {
             Bundle extras = data.getExtras();
             imageBitmap = (Bitmap) extras.get("data");
             imgPreview.setImageBitmap(imageBitmap);
-
-//            // CALL THIS METHOD TO GET THE URI FROM THE BITMAP
-//            Uri tempUri = getImageUri(getApplicationContext(), imageBitmap);
-//
-//            // CALL THIS METHOD TO GET THE ACTUAL PATH
-//
-//            File finalFile = new File(getRealPathFromURI(tempUri));
-//
-//
-//            if (finalFile.exists()) {
-//                if (finalFile.delete()) {
-//                   // Toast.makeText(Display_Info.this, "Gallery photo deleted", Toast.LENGTH_SHORT).show();
-//                } else {
-//                  //  Toast.makeText(Display_Info.this, "Gallery photo NOT deleted", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//            //     System.out.println(mImageCaptureUri);
-
-
-        }
-        if ( requestCode==CHECK_LOCATION_INTENT_Display_Info)
-        {
-
-
         }
     }
 
@@ -395,7 +335,6 @@ public class Display_Info extends AppCompatActivity implements GoogleApiClient.C
 
         if (mLastLocation != null)
         {
-        //    Toast.makeText(this, "lat " + String.valueOf(mLastLocation.getLatitude()) + " Long " + String.valueOf(mLastLocation.getLongitude()), Toast.LENGTH_SHORT).show();
             return mLastLocation;
             //save the loc to the database
         }
